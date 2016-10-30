@@ -16,22 +16,22 @@ endf
 
 fu! agrep#CloseHandler(ch)
     if s:count == 0
-        echo 'No matches for "' . s:term . '".'
+        echo 'No matches for ' . s:term . '.'
     elseif s:count == 1
         :silent ll
         :redraw " to make the echo command appear
-        echo 'Displaying only match for "' . s:term . '".'
+        echo 'Displaying only match for ' . s:term . '.'
     else
-        echo 'Displaying ' . s:count . ' matches for "' . s:term . '".'
+        echo 'Displaying ' . s:count . ' matches for ' . s:term . '.'
     endif
 endf
 
 fu! AGrep(term)
     :silent let l:gitroot = system('git rev-parse --show-toplevel')
     if v:shell_error == 0
-        let l:grepcommand = 'git grep -n "' . a:term . '"'
+        let l:grepcommand = 'git grep -n ' . a:term
     else
-        let l:grepcommand = 'grep -rn "' . a:term . '" *'
+        let l:grepcommand = 'grep -rn ' . a:term . ' *'
     endif
     let s:count = 0
     call setloclist(0, [], 'r')
