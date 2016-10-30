@@ -5,7 +5,7 @@ fu! agrep#InputHandler(job, msg)
     let l:matches = matchlist(a:msg, '\(.*\):\(\d*\):\s*\(.*\)')
     if len(l:matches) > 0
         call setloclist(0, [{'filename': l:matches[1], 'lnum': l:matches[2], 'text': l:matches[3]}], 'a')
-        if s:count == 0
+        if s:count == 1
             :lop 6
         else
             :lbo
@@ -17,6 +17,10 @@ endf
 fu! agrep#CloseHandler(ch)
     if s:count == 0
         echo 'No matches for "' . s:term . '".'
+    elseif s:count == 1
+        :silent ll
+        :redraw " to make the echo command appear
+        echo 'Displaying only match for "' . s:term . '".'
     else
         echo 'Displaying ' . s:count . ' matches for "' . s:term . '".'
     endif
