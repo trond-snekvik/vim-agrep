@@ -43,5 +43,5 @@ endf
 nnoremap <F3> :lne<CR>
 nnoremap <S-F3> :lp<CR>
 :com! -nargs=1 AG call AGrep(<f-args>)
-
+set switchbuf=usetab,newtab
 
